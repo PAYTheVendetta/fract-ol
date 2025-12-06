@@ -6,7 +6,7 @@
 /*   By: aialonso <aialonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 16:57:38 by aialonso          #+#    #+#             */
-/*   Updated: 2025/12/05 00:13:38 by aialonso         ###   ########.fr       */
+/*   Updated: 2025/12/06 04:17:43 by aialonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@ int		ft_isspace(int c);
 long	ft_atoi(char *nptr);
 void	*ft_memset(void *b, int c, size_t len);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+double	ft_atodbl(char *s);
 
 #endif

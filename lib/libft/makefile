@@ -6,7 +6,7 @@
 #    By: aialonso <aialonso@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/29 12:33:05 by aialonso          #+#    #+#              #
-#    Updated: 2025/12/05 01:47:56 by aialonso         ###   ########.fr        #
+#    Updated: 2025/12/06 11:31:22 by aialonso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SOURCES =   $(addprefix $(SRC_PATH)/,\
 			ft_isspace.c\
 			ft_isdigit.c\
 			ft_atoi.c\
+			ft_atodbl.c\
 			ft_memset.c\
 			ft_strncmp.c\
 			ft_printf/utils.c\
@@ -42,12 +43,12 @@ $(NAME):$(OBJECTS)
 	@$(CC) $(FLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJECTS)
+	@rm -f $(OBJECTS)
 
 rclean:
-	rm -f $(OBJECTS)
+	@rm -f $(OBJECTS)
 	
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all rclean

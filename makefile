@@ -6,7 +6,7 @@
 #    By: aialonso <aialonso@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/03 18:56:10 by aialonso          #+#    #+#              #
-#    Updated: 2025/12/05 02:40:26 by aialonso         ###   ########.fr        #
+#    Updated: 2025/12/06 14:04:03 by aialonso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,10 +14,17 @@ NAME = fractol
 
 SRC_PATH = src
 LIB = lib
+UTILS = utils
 
 
 SOURCES =   $(addprefix $(SRC_PATH)/,\
-			fract-ol.c)
+			render.c\
+			init.c\
+			draw.c\
+			events.c\
+			main.c)\
+			$(addprefix $(UTILS)/,\
+			utils.c)
 
 INC_PUS = inc
 INC_LIB = $(LIB)/libft/inc
@@ -43,7 +50,7 @@ CC = cc
 OBJECTS= $(SOURCES:.c=.o)
 
 $(COM_LIB):
-	make re -C $(LIB)/libft
+	@make -C $(LIB)/libft
 	
 $(COM_MIX):
 	make -C $(LIB)/minilibx
@@ -51,21 +58,22 @@ $(COM_MIX):
 all: $(NAME)
 
 $(NAME): $(OBJECTS) $(COM_LIB) $(COM_MIX) $(COM_MIX_L)
-	$(CC) $(FLAGS) $(FLA_I) $(FLA_I_LIB) $(FLA_I_MIX) $(OBJECTS) $(TFLAGS) -o $(NAME)
+	@$(CC) $(FLAGS) $(FLA_I) $(FLA_I_LIB) $(FLA_I_MIX) $(OBJECTS) $(TFLAGS) -o $(NAME)
 	
 %.o: %.c
 	@$(CC) $(FLAGS) $(FLA_I) $(FLA_I_MIX) $(FLA_I_LIB) -c $< -o $@
 
 clean:
-	make clean -C $(LIB)/libft
-	rm -f $(OBJECTS)
+	@make clean -C $(LIB)/libft
+	@rm -f $(OBJECTS)
 
 rclean:
-	rm -f $(OBJECTS)
+	@make rclean -C $(LIB)/libft
+	@rm -f $(OBJECTS)
 	
 fclean: clean
-	make fclean -C $(LIB)/libft
-	rm -f $(NAME)
+	@make fclean -C $(LIB)/libft
+	@rm -f $(NAME)
 
 re: fclean all rclean
 

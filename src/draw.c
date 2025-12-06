@@ -1,17 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   math.c                                             :+:      :+:    :+:   */
+/*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aialonso <aialonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/05 02:17:56 by aialonso          #+#    #+#             */
-/*   Updated: 2025/12/05 03:20:22 by aialonso         ###   ########.fr       */
+/*   Created: 2025/12/06 03:24:17 by aialonso          #+#    #+#             */
+/*   Updated: 2025/12/06 14:18:48 by aialonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-double	map(double unscaled_num, double new_min,
-		double new_max, double old_min, double old_max)
+#include "fract_ol.h"
+
+void	my_pixel_put(int x, int y, t_ftimg *img, int color)
 {
-	return ((new_max - new_min) * (unscaled_num - old_min) / (old_max - old_min) + new_min);
+	char	*pixel;
+	int		bytes_per_pixel;
+
+	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
+		return ;
+	bytes_per_pixel = img->bpp / 8;
+	pixel = img->pixels_ptr + (y * img->line_len + x * bytes_per_pixel);
+	*(unsigned int *)pixel = (unsigned int)color;
 }
